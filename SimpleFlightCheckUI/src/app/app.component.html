@@ -1,0 +1,60 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="text-danger text-center">Welcome to {{ title }}!</h1>
+    <hr />
+
+    <div class = "row">
+    <div>
+        <!--Pass these Inputs as params in http get-->
+        <input type="text" placeholder="Enter Flight Number or Origin" style="width: 300px;">
+        <input type="text" placeholder="Enter Destination">
+        <input type="date" placeholder="Enter Date">
+    </div>
+
+    <div id="fetchbtn">
+      <button type="button" class="btn btn-outline-success" (click)="getFlightInfo();">Search!</button>
+    </div>
+    </div>
+
+    <div *ngIf="myresponse">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <th>Flight Number</th>
+          <th>Carrier</th>
+          <th>Origin</th>
+          <th>Departure Date & Time</th>
+          <th>Destination</th>
+          <th>Arrival Date & Time</th>
+          <th>Aircraft</th>
+          <th>Distance</th>
+          <th>Travel Time</th>
+          <th>Status</th>
+
+        </thead>
+        <tbody>
+          <tr *ngFor="let flightinfo of myresponse">
+            <td>{{flightinfo.flightNumber}}</td>
+            <td>{{flightinfo.carrier}}</td>
+            <td>{{flightinfo.origin}}</td>
+            <td>{{flightinfo.departure | date:'full'}}</td>
+            <td>{{flightinfo.destination}}</td>
+            <td>{{flightinfo.arrival | date:'full'}}</td>
+            <td>{{flightinfo.aircraft}}</td>
+            <td>{{flightinfo.distance}}</td>
+            <td>{{flightinfo.travelTime}}</td>
+            <td>{{flightinfo.status}}</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>
